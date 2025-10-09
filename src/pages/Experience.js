@@ -51,16 +51,6 @@ const Experience = () => {
     }
   ];
 
-  const skills = [
-    { name: 'Control Systems', level: 90 },
-    { name: 'Robotics', level: 85 },
-    { name: 'Embedded Systems', level: 88 },
-    { name: 'Sensor Fusion', level: 82 },
-    { name: 'PCB Design', level: 75 },
-    { name: 'Programming (C/C++)', level: 80 },
-    { name: 'Signal Processing', level: 70 },
-    { name: 'Project Management', level: 78 }
-  ];
 
   const certifications = [
     {
@@ -156,25 +146,7 @@ const Experience = () => {
             </div>
           </section>
 
-          <section className="skills-section">
-            <h2>Technical Skills & Proficiency</h2>
-            <div className="skills-grid">
-              {skills.map((skill, index) => (
-                <div key={index} className="skill-item" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div 
-                      className="skill-progress" 
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          {/* Technical Skills & Proficiency section removed per request */}
 
           <section className="certifications-section">
             <h2>Certifications & Awards</h2>

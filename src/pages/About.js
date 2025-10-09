@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './About.css';
 
 const About = () => {
@@ -35,6 +35,22 @@ const About = () => {
     'Vidya Innovation & Incubation Centre - Tamil Nadu (2025)'
   ];
 
+  const [imgSrc, setImgSrc] = useState('/images/harish-profile.jpg');
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    const candidates = ['/images/harish-profile.jpg', '/harish-profile.jpg', '/assets/harish-profile.jpg'];
+    let found = false;
+    const checkNext = (i) => {
+      if (i >= candidates.length) return;
+      const img = new Image();
+      img.onload = () => { setImgSrc(candidates[i]); setImgLoaded(true); found = true; };
+      img.onerror = () => { if (!found) checkNext(i + 1); };
+      img.src = candidates[i];
+    };
+    checkNext(0);
+  }, []);
+
   return (
     <div className="about">
       <div className="about-header">
@@ -45,11 +61,24 @@ const About = () => {
         <div className="header-visual">
           <div className="profile-section">
             <div className="profile-avatar">
-              <img 
-                src="/images/harish-profile.jpg" 
-                alt="Harish S - Profile" 
-                className="avatar-img"
-              />
+              {imgLoaded ? (
+                <img src={imgSrc} alt="Harish S - Profile" className="avatar-img" />
+              ) : (
+                <>
+                  <img 
+                    src={imgSrc}
+                    alt="Harish S - Profile" 
+                    className="avatar-img"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; setImgLoaded(false); }}
+                    onLoad={() => setImgLoaded(true)}
+                  />
+                  {!imgLoaded && (
+                    <div className="avatar-fallback">
+                      <div className="avatar-initials">HS</div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

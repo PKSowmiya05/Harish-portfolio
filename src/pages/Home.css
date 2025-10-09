@@ -241,6 +241,15 @@
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* Fallback handling when image is missing */
+.profile-photo img[onerror], .profile-photo img[hidden] {
+  display: none;
+}
+
+.profile-placeholder { display: flex; }
+
+.profile-image .profile-photo img[onerror] + .profile-placeholder { display: flex; }
+
 .profile-ring {
   position: absolute;
   top: -10px;

@@ -37,6 +37,25 @@ const Home = ({ setCurrentPage }) => {
     document.body.removeChild(link);
   };
 
+  const [imgError, setImgError] = useState(false);
+  const [imgSrc, setImgSrc] = useState('/images/harish-profile.jpg');
+
+  useEffect(() => {
+    // try a couple of common paths if image is available in different folders
+    const candidates = ['/images/harish-profile.jpg', '/harish-profile.jpg', '/assets/harish-profile.jpg'];
+    let found = false;
+
+    const checkNext = (idx) => {
+      if (idx >= candidates.length) { setImgError(true); return; }
+      const img = new Image();
+      img.onload = () => { setImgSrc(candidates[idx]); found = true; };
+      img.onerror = () => { if (!found) checkNext(idx + 1); };
+      img.src = candidates[idx];
+    };
+
+    checkNext(0);
+  }, []);
+
   return (
     <div className="home">
       <div className="hero-section">
@@ -72,13 +91,20 @@ const Home = ({ setCurrentPage }) => {
           <div className="hero-visual">
             <div className="profile-container">
               <div className="profile-image">
-                <div className="profile-photo">
-                  <img 
-                    src="/images/harish-profile.jpg" 
-                    alt="Harish S - Robotics Engineer" 
-                    className="profile-img"
-                  />
-                </div>
+                {imgError ? (
+                  <div className="profile-placeholder">
+                    <div className="initials">HS</div>
+                  </div>
+                ) : (
+                  <div className="profile-photo">
+                    <img
+                      src={imgSrc}
+                      alt="Harish S - Robotics Engineer"
+                      className="profile-img"
+                      onError={() => setImgError(true)}
+                    />
+                  </div>
+                )}
                 <div className="profile-ring"></div>
               </div>
             </div>
