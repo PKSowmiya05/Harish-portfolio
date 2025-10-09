@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Harish-portfolio/static/css/main.1e671dde.css",
+    "main.js": "/Harish-portfolio/static/js/main.5beaf782.js",
+    "index.html": "/Harish-portfolio/index.html",
+    "main.1e671dde.css.map": "/Harish-portfolio/static/css/main.1e671dde.css.map",
+    "main.5beaf782.js.map": "/Harish-portfolio/static/js/main.5beaf782.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e671dde.css",
+    "static/js/main.5beaf782.js"
+  ]
+}
